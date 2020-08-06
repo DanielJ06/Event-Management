@@ -11,4 +11,8 @@ export class EventRepository extends Repository<Event> {
   async createEvent(createEventDto: CreateEventDto): Promise<Event> {
     return await this.save(createEventDto)
   }
+
+  async getEventById(id: number): Promise<Event> {
+    return await this.findOne(id);
+  }
 }
