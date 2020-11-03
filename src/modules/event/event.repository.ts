@@ -15,4 +15,8 @@ export class EventRepository extends Repository<Event> {
   async getEventById(id: number): Promise<Event> {
     return await this.findOne(id);
   }
+
+  async getEventsDate(date: Date): Promise<Event> {
+    return await this.findOne({ where: { date } });
+  }
 }

@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { registerDecorator, ValidationOptions, ValidationArguments } from "class-validator";
-import { PipeTransform, BadRequestException } from "@nestjs/common";
 import { startOfHour, isBefore } from "date-fns";
 
 export function ValidateDate(validationOptions?: ValidationOptions): any {
