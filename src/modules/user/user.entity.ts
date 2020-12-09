@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, Unique } from "typeorm";
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
+import { Event } from "../event/event.entity";
 
 @Entity()
 @Unique(['email'])
@@ -14,4 +15,7 @@ export class User extends BaseEntity {
 
   @Column()
   password: string
+
+  @OneToMany(type => Event, event => event.user, { eager: true })
+  events: Event[];
 }

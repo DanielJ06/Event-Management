@@ -1,4 +1,5 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn } from "typeorm";
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn, ManyToOne } from "typeorm";
+import { User } from "../user/user.entity";
 
 @Entity()
 export class Event extends BaseEntity {  
@@ -25,4 +26,10 @@ export class Event extends BaseEntity {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @ManyToOne(type => User, user => user.events, { eager: false })
+  user: User;
+
+  @Column()
+  userId: number;
 }
