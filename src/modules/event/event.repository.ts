@@ -1,15 +1,30 @@
 import { EntityRepository, Repository } from "typeorm";
 import { Event } from "./event.entity";
 import { CreateEventDto } from './dto/create-event.dto';
+import { User } from "../user/user.entity";
 
 @EntityRepository(Event)
 export class EventRepository extends Repository<Event> {
-  async getEvents(): Promise<Event[]> {
-    return await this.find()
+  async getEvents(
+    user: User
+  ): Promise<Event[]> {
+    return await this.find({ where: { userId: user.id } })
   }
 
-  async createEvent(createEventDto: CreateEventDto): Promise<Event> {
-    return await this.save(createEventDto)
+  async createEvent(
+    createEventDto: CreateEventDto,
+    user: User
+  ): Promise<Event> {
+    const { title, description, canceled, date, location } = createEventDto;
+    const event = {
+      title,
+      description,
+      canceled,
+      date,
+      location,
+      user: user
+    }
+    return await this.save(event);
   }
 
   async getEventById(id: number): Promise<Event> {
