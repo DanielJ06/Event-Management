@@ -33,7 +33,7 @@ export class EventService {
     createEventDto: CreateEventDto,
     user: User
   ): Promise<Event> {
-    const exists = await this.eventRepository.getEventsDate(createEventDto.date);
+    const exists = await this.eventRepository.getEventsDate(createEventDto.date, user);
 
     if (exists) {
       throw new NotFoundException(`Unavailable date! Try another date`)

@@ -1,4 +1,5 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn, ManyToOne } from "typeorm";
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn, ManyToOne, OneToOne, OneToMany, ManyToMany } from "typeorm";
+import { Subscription } from "../subscription/subscription.entity";
 import { User } from "../user/user.entity";
 
 @Entity()
@@ -26,6 +27,9 @@ export class Event extends BaseEntity {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @OneToMany(type => Subscription, subs => subs.eventId)
+  subscriptions: Subscription[];
 
   @ManyToOne(type => User, user => user.events, { eager: false })
   user: User;
