@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UsePipes, ValidationPipe, Param, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, UsePipes, ValidationPipe, Param, UseGuards, ClassSerializerInterceptor, UseInterceptors } from '@nestjs/common';
 import { EventService } from './event.service';
 import { Event } from './event.entity';
 import { CreateEventDto } from './dto/create-event.dto';
@@ -8,6 +8,7 @@ import { User } from '../user/user.entity';
 
 @Controller('event')
 @UseGuards(AuthGuard('jwt'))
+@UseInterceptors(ClassSerializerInterceptor)
 export class EventController {
   constructor(private eventService: EventService) {}
 

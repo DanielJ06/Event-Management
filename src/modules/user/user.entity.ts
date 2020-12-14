@@ -1,3 +1,4 @@
+import { Exclude } from "class-transformer";
 import { BaseEntity, Column, Entity, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { Event } from "../event/event.entity";
 import { Subscription } from "../subscription/subscription.entity";
@@ -15,6 +16,7 @@ export class User extends BaseEntity {
   email: string
 
   @Column()
+  @Exclude({ toPlainOnly: true })
   password: string
 
   @OneToMany(type => Subscription, subs => subs.userId)
