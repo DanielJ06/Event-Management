@@ -1,5 +1,5 @@
 <p align="center">
-   <img src=".github/logo.png" width="250"/>
+   <img src=".github/logo.PNG" width="250"/>
 </p>
 
 # Event Management
